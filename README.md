@@ -151,3 +151,5 @@ Compile your wxWidgets application using the make utility.
 make
 ```
 On your BBB LCD go to /home/debian/ and click on the Draw program to run your application.
+![Click Mode](https://github.com/adrianmuino/Draw-App-BBB/blob/main/File_000.jpeg)
+![Draw Mode](https://github.com/adrianmuino/Draw-App-BBB/blob/main/File_001.jpeg)
