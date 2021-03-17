@@ -31,14 +31,15 @@ Write the image to the SD card.
 sudo dd if=./bone-debian-9.9-lxqt-armhf-2019-08-03-4gb.img of=/dev/sdc
 ```
 
-## Boot BBB from SD card and prepare the root file system:
+## Step 3: Boot BBB from SD card and prepare the root file system.
 Eject the SD card from your host machine and connect it to the BBB using the SD card reader. Connect the BeagleBone to your VM using the USB cable. 
-On your Ubuntu VM enable the BBB by going to Devices >> USB >> BeagleBoard
-Open a secure shell session with the BBB:
+On your Ubuntu VM enable the BBB by going to Devices >> USB >> BeagleBoard.
+Open a secure shell session with the BBB.
 ```bash
 ssh 192.168.7.2 -l debian
 ```
-When prompted enter the password which is: temppwd 
+When prompted enter the default password which is: temppwd
+
 Navigate to the following directory.
 ```bash
 cd /opt/scripts/tools/
@@ -47,7 +48,8 @@ Connect the Ethernet cable to your BBB and run the following command.
 ```bash
 git pull || true
 ```
-Expand the partition on your micro SD card to the full remaining available space of the SD card. 
+Expand the partition on your micro SD card to the full remaining available space of the SD card.
+```bash
 sudo ./grow_partition.sh
 sudo reboot
 ```
@@ -57,8 +59,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
 ```
-Compile WxWidgets library for the BBB:
-```
+## Step 4: Compile WxWidgets library for the BBB.
 Download source code for wxWidgets on your Ubuntu VM.
 ```bash
 wget https://github.com/wxWidgets/wxWidgets/archive/v3.0.4.tar.gz
@@ -102,7 +103,7 @@ Exit the ssh session.
 ``` bash
 exit
 ```
-Compile your WxWidgets application and run it on the BBB:
+## Step 5: Compile your WxWidgets application and run it on the BBB.
 In your Ubuntu VM navigate to the directory of your draw project. This is where your CodeBlocks project file (.cbp) is located.
 ```bash
 cd ~/Draw-App-BBB/Draw
@@ -110,7 +111,6 @@ cd ~/Draw-App-BBB/Draw
 Create the following makefile in the directory of your draw project:
 ```makefile
 # Makefile for Draw application 
-# (Assuming you are using json.hpp to work with JSON objects, DrawMain is the name of your Main file, and DrawApp is the name of your App file)
 
 OBJS = DrawApp.o DrawMain.o
 EXE = Draw
@@ -134,10 +134,11 @@ Compress all project files into a directory using the make utility.
 ```bash
 make tar
 ```
-Transfer the extracted directory into the BBB. (In my case the name of my .tar file is called Draw.tar, change this for the name of your .tar file)
+Transfer the extracted directory into the BBB.
 ```bash
 scp Draw.tar debian@192.168.7.2:/home/debian
 ```
+Open a secure shell to your BBB.
 ```bash
 ssh 192.168.7.2 -l debian
 ```
