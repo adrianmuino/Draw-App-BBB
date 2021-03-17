@@ -104,7 +104,7 @@ Exit the ssh session.
 exit
 ```
 ## Step 5: Compile your WxWidgets application and run it on the BBB.
-In your Ubuntu VM navigate to the directory of your Draw project. This is where your CodeBlocks project file (.cbp) is located.
+In your Ubuntu VM navigate to the directory of your Draw project.
 ```bash
 cd ~/Draw-App-BBB/Draw
 ```
